@@ -31,4 +31,4 @@ Historical mission facts will be supported by reliable sources. Fictional repair
 Project Goal
 
 Build a lightweight, mobile-friendly game that can be explored and played in a web browser.
-Game prototype in progress — PROJECT AFTERLIGHT Mission 01
+Game prototype in progress — PROJECT AFTERLIGHT Mission 01.
