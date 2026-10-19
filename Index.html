@@ -1,1 +1,67 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROJECT AFTERLIGHT</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#160f16;color:#fff;font-family:system-ui,sans-serif;text-align:center}
+header{padding:18px}
+h1{letter-spacing:3px;color:#ffb56b}
+#game{position:relative;max-width:700px;margin:auto;background:linear-gradient(#281b38,#bd654a 70%,#6c3a32);height:55vh;min-height:320px;overflow:hidden;border:2px solid #f6a66c;border-radius:12px}
+#ground{position:absolute;bottom:0;width:100%;height:25%;background:#59342f;clip-path:polygon(0 30%,15% 0,30% 35%,50% 10%,70% 35%,85% 5%,100% 30%,100% 100%,0 100%)}
+#rover{position:absolute;left:45%;bottom:22%;font-size:48px;transition:left .15s}
+#rock{position:absolute;left:72%;bottom:25%;font-size:35px}
+#signal{position:absolute;top:18px;left:0;right:0;color:#ffe4b9}
+.controls{display:flex;justify-content:center;gap:14px;padding:18px}
+button{background:#f5a56a;color:#21131b;border:0;border-radius:12px;padding:15px 23px;font-weight:bold;font-size:18px}
+#status{padding:10px;color:#ffcf9c}
+small{color:#d6c5c8}
+</style>
+</head>
+<body>
+<header>
+<h1>PROJECT AFTERLIGHT</h1>
+<p>MISSION 01 · THE RED PLANET</p>
+</header>
+<main>
+<div id="game">
+<div id="signal">SIGNAL DETECTED · EXPLORE THE SURFACE</div>
+<div id="ground"></div>
+<div id="rock">🪨</div>
+<div id="rover">🚙</div>
+</div>
+<div id="status">Rover ready. Find the unknown object.</div>
+<div class="controls">
+<button onclick="move(-1)" aria-label="Move rover left">⬅️</button>
+<button onclick="scan()">🔎 SCAN</button>
+<button onclick="move(1)" aria-label="Move rover right">➡️</button>
+</div>
+<small>Touch controls · Mars exploration prototype</small>
+</main>
+<script>
+let position=45;
+let discovered=false;
+function move(direction){
+ position=Math.max(5,Math.min(85,position+direction*8));
+ document.getElementById("rover").style.left=position+"%";
+ document.getElementById("status").textContent="Rover position: "+position+"%. Keep exploring.";
+}
+function scan(){
+ if(position>=60&&!discovered){
+  discovered=true;
+  document.getElementById("rock").textContent="📡";
+  document.getElementById("status").textContent="DISCOVERY! A possible instrument has been located. In a real mission, scientists would verify it using evidence.";
+  document.getElementById("signal").textContent="OBJECT LOCATED · EVIDENCE NEEDED";
+ }else if(discovered){
+  document.getElementById("status").textContent="Discovery recorded! Continue your mission.";
+ }else{
+  document.getElementById("status").textContent="No object nearby. Move right and scan again.";
+ }
+}
+</script>
+</body>
+</html>
+
